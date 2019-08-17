@@ -1,5 +1,6 @@
 
 class ListaRasp {
+  
   int pg;
   String idVaga;
   String title;
@@ -11,4 +12,18 @@ class ListaRasp {
   String datePub;
   String emp;
   String location;
+
+    ListaRasp(){
+      pg=0;
+      idVaga="";
+      title="";
+      url="";
+      content="";
+      amount="";
+      state="";
+      expire="";
+      datePub="";
+      emp="";
+      location="";
+    }
 }

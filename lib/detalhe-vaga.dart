@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import './http-raspvaga.dart';
-import './menu.dart';
 
 class DetalheVaga extends StatelessWidget {
   final String url;
@@ -17,8 +16,17 @@ class DetalheVaga extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: Text('RaspVaga - Detalhe da vaga'),
+          actions: <Widget>[
+          new IconButton(
+              icon: new Icon(Icons.add),
+              onPressed: () {
+                //print("Add button clicked");
+                Navigator.pop(context);
+              })
+        ],
         ),
-         drawer: new Menu().monta(context),  
+        
+        // drawer: new Menu().monta(context),  
         body: FutureBuilder<String>(
             future: this.getURL(),
             builder: (context, snapshot) {

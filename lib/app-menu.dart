@@ -10,10 +10,11 @@ class AppMenu extends StatelessWidget {
       title: title,
       home: Scaffold(
         appBar: AppBar(
-          title: Text(title),
+        title: Text(title),
         ),
+        
         drawer: new Menu().monta(context),     
-        body: Center( child: Text("RaspVaga primeiro de muitos kkkk")),
+        body: Center( child: Text("RaspVaga")),
       ),
     );
   }

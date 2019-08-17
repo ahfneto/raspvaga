@@ -36,13 +36,14 @@ class HttpRaspVaga {
 
   Future<List<ListaRasp>> decodeListVaga(String body, int pg) {
     var list = new List<ListaRasp>();
-
+      print("pagina="+pg.toString());
     var data = parse(body)
         .documentElement
-        .querySelector("Div[id='todasVagas']")
-        .querySelectorAll("li[class]");
+        .querySelector("div[id='todasVagas']");
 
-    for (var it in data.toList()) {
+    var li = data.querySelectorAll("li[class]");
+
+    for (var it in li.toList()) {
       
       var a = it.querySelector("a[class]");
       var item = new ListaRasp();
@@ -54,9 +55,29 @@ class HttpRaspVaga {
             "https://www.vagas.com.br" + a.attributes.values.elementAt(5);
       }
 
-      var p = it.querySelector("p");
-      if (p != null) {
-        item.content = p.text;
+      var content = it.querySelector("p");
+      if (content != null) {
+        item.content = content.text;
+      }
+
+      var local = it.querySelector("span[class='vaga-local']");
+      if (local != null) {
+        item.location = local.text.trim();
+      }
+
+      var exp = it.querySelector("span[class='icon-relogio-24 data-publicacao']");
+      if (exp != null) {
+        item.expire = exp.text.trim();
+      }
+
+      var state = it.querySelector("span[class='nivelVaga']");
+      if (state != null) {
+        item.state = state.text.trim();
+      }
+
+      var emp = it.querySelector("span[class='emprVaga']");
+      if (emp != null) {
+        item.emp = emp.text.trim();
       }
 
       list.add(item);
